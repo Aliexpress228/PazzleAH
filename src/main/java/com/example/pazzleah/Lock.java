@@ -278,7 +278,6 @@ public class Lock {
         return (int) (circleY + l * Math.sin(angle));
     }
     private boolean isCompleted() {
-        //return this.getPlacesColorIndexes()==this.getCellsColorIndexes();
         for (int i = 0; i < 8; i++) {
             if (this.getCellsColorIndexes(i) != this.getPlacesColorIndexes(i)) {
                 return false;

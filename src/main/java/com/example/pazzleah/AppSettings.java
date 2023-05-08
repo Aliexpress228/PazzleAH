@@ -13,7 +13,7 @@ public class AppSettings {
         colorMap.put(2, Color.web("#DEBA05",1)); //Желтый
         colorMap.put(3, Color.web("#01BAD7",1)); //Голубой
         colorMap.put(4, Color.web("#1F8E00",1)); //Зеленый
-        colorMap.put(5, Color.web("#978C7E",1)); //светло-серо-коричневый
+        colorMap.put(5, Color.web("#0047AB",1)); //синий
         colorMap.put(6, Color.web("#FF2E96",1)); //Розовый
         colorMap.put(7, Color.web("#F60001",1)); //Красный
         colorMap.put(8, Color.web("#9D9D9D",1)); //Серый
@@ -28,6 +28,3 @@ public class AppSettings {
     }
 }
 
-/*
-new ArrayList<Integer>(Arrays.asList(5,5,7,3,1,2,4,6)),
-new ArrayList<Integer>(Arrays.asList(6,2,5,4,7,1,3,5)),*/ //Самый сложный уровень

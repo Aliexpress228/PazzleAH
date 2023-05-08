@@ -37,6 +37,4 @@
       </Button>
    </children>
 </VBox>
-
-<Label fx:id="welcomeText" />
 </VBox>

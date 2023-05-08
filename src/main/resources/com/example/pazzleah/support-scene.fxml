@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="suppBack" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="←">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Text layoutX="65.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Али: 2200 7302 5381 0887 Qiwi. " wrappingWidth="1537.13671875">
+         <font>
+            <Font size="96.0" />
+         </font></Text>
+      <Text layoutX="65.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Арсений: 5469 3800 1200 7737 Сбер." wrappingWidth="1607.13671875">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <Text layoutX="65.0" layoutY="569.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Захар: 5469 3800 1200 7737 Сбер." wrappingWidth="1607.13671875">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <Text layoutX="65.0" layoutY="769.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дима: 5469 3800 1200 7737 Сбер.">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
