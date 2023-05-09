@@ -57,6 +57,7 @@ public class HelloApplication extends Application {
         btnSupp.setOnMouseClicked(mouseEvent -> stage.setScene(sceneSupport));
         stage.setScene(sceneMainMenu);
         stage.show();
+
     }
     public static void main(String[] args) {
         launch();

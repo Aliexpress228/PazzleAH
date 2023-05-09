@@ -264,6 +264,16 @@ public class Lock {
         imageView.setFitWidth(550);
         imageView.setLayoutX(scene.getWidth()/2-imageView.getFitWidth()/2);
         imageView.setLayoutY(270);
+        String cssBordering = "-fx-border-color:darkblue ; \n" //#090a0c
+                + "-fx-border-insets:3;\n"
+                + "-fx-border-radius:7;\n"
+                + "-fx-border-width:1.0";
+        Pane top = new Pane();
+        top.getChildren().add(imageView);
+        top.setStyle(cssBordering);
+        pane.getChildren().add(top);
+        top.setLayoutX(scene.getWidth()/2-top.getWidth()/2);
+        top.setLayoutY(300);
     }
 
     private Color getCellsColor(int cellsColorIndex) {
