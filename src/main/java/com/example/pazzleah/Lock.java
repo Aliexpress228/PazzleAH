@@ -16,8 +16,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Random;
 
 public class Lock {
@@ -42,7 +45,13 @@ public class Lock {
 
     double triangleRotateDistance;
     double getTriangleRotateStartingPoint;
+    Scene sceneBack;
+    Stage stage;
+    Pane pane;
     Lock(int emptyCells, int sameCells1, int sameCells2, Scene scene, Pane pane, Scene sceneBack, Stage stage) {
+        this.pane = pane;
+        this.sceneBack = sceneBack;
+        this.stage = stage;
         pane.getChildren().clear();
         this.scene = scene;
         ArrayList<Integer> a1 = entanglement(generateComposition(emptyCells, sameCells1, sameCells2));
@@ -202,9 +211,6 @@ public class Lock {
                     this.rotateTriangle();
                 }
                 pressed.set(0, true);
-                if (this.isCompleted()){
-                    fillVictory(pane, scene, stage, sceneBack);
-                }
             }
         });
         scene.setOnKeyReleased(e -> {
@@ -213,22 +219,13 @@ public class Lock {
         });
         this.left.setOnMouseClicked(mouseEvent -> {
             this.rotateLock(-2);
-            if (this.isCompleted()) {
-                fillVictory(pane, scene, stage, sceneBack);
-            }
         });
 
         this.right.setOnMouseClicked(mouseEvent -> {
             this.rotateLock(2);
-            if (this.isCompleted()) {
-                fillVictory(pane, scene, stage, sceneBack);
-            }
         });
         this.swap.setOnMouseClicked(mouseEvent -> {
             rotateTriangle();
-            if (this.isCompleted()) {
-                fillVictory(pane, scene, stage, sceneBack);
-            }
         });
         back.setOnMouseClicked(mouseEvent -> stage.setScene(sceneBack));
     }
@@ -345,6 +342,9 @@ public class Lock {
                         cirArr.get(i).setCenterY(getOnCirclePosY(bigCircle.getCenterY(), 185,  formula));
                     }
                     this.setCirclesArray(this.cirArr, this);
+                    if (k==40 && this.isCompleted()){
+                        fillVictory(pane, scene, stage, sceneBack);
+                    }
                 });
             }
         }).start();
@@ -376,6 +376,10 @@ public class Lock {
                     }
                     cirArr.get(3).setCenterX(getTriangleRotateStartingPoint-k*triangleRotateDistance/20);
                     this.setCirclesArray(this.cirArr, this);
+                    this.setCirclesArray(this.cirArr, this);
+                    if (k==20 && this.isCompleted()){
+                        fillVictory(pane, scene, stage, sceneBack);
+                    }
                 });
             }
         }).start();
