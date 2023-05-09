@@ -3,6 +3,8 @@ package com.example.pazzleah;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -256,6 +258,12 @@ public class Lock {
         swap.setOnMouseClicked(e -> {});
         right.setOnMouseClicked(e -> {});
         backVictoryButton.setOnMouseClicked(e -> stage.setScene(sceneBack));
+        ImageView imageView = new ImageView();
+        pane.getChildren().add(imageView);
+        imageView.setImage(new Image(this.getClass().getResource("dance.gif").toExternalForm()));
+        imageView.setFitWidth(300);
+        imageView.setLayoutX(scene.getWidth()/2-imageView.getFitWidth()/2);
+        imageView.setLayoutY(300);
     }
 
     private Color getCellsColor(int cellsColorIndex) {
