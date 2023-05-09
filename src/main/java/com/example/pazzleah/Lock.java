@@ -244,7 +244,7 @@ public class Lock {
         backVictoryButton.setLayoutX(scene.getWidth()/2-backVictoryButton.getPrefWidth()/2);
         backVictoryButton.setLayoutY(150);
         backVictoryButton.setFont(Font.font("Arial", FontWeight.BLACK, 24));
-        victoryText.setText("Великолепно!\nВы прошли этот уровень!");
+        victoryText.setText("Поздравляем!\nВы прошли уровень!");
         victoryText.setFont(Font.font("Arial", FontWeight.BOLD, 35));
         victoryText.setLayoutY(60);
         victoryText.setWrappingWidth(700);
