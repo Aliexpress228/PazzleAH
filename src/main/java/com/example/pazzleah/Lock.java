@@ -261,9 +261,9 @@ public class Lock {
         ImageView imageView = new ImageView();
         pane.getChildren().add(imageView);
         imageView.setImage(new Image(this.getClass().getResource("dance.gif").toExternalForm()));
-        imageView.setFitWidth(300);
+        imageView.setFitWidth(550);
         imageView.setLayoutX(scene.getWidth()/2-imageView.getFitWidth()/2);
-        imageView.setLayoutY(300);
+        imageView.setLayoutY(270);
     }
 
     private Color getCellsColor(int cellsColorIndex) {
