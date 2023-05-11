@@ -61,7 +61,7 @@ public class Lock {
         this.cellsColorIndexes = a2;
         this.fillLock(scene, pane, sceneBack, stage);
         setCirclesArray(cirArr, this);
-        setActivities(scene, pane, sceneBack, stage);
+        setActivities(emptyCells, sameCells1, sameCells2, scene, pane, sceneBack, stage);
     }
 
     private void fillLock(Scene scene, Pane pane, Scene sceneBack, Stage stage) {
@@ -195,10 +195,9 @@ public class Lock {
         triangleRotateDistance = Math.abs(cirArr.get(1).getCenterX() - cirArr.get(3).getCenterX());
         getTriangleRotateStartingPoint = cirArr.get(1).getCenterX();
         setCirclesArray(cirArr, this);
-        setActivities(scene, pane, sceneBack, stage);
     }
 
-    private void setActivities(Scene scene, Pane pane, Scene sceneBack, Stage stage) {
+    private void setActivities(int emptyCells, int sameCells1, int sameCells2, Scene scene, Pane pane, Scene sceneBack, Stage stage) {
         pressed.add(false);
         scene.setOnKeyPressed(e -> {
             //Если не нажато, то выполни действие
@@ -211,6 +210,9 @@ public class Lock {
                 }
                 if (e.getCode() == KeyCode.S) {
                     this.rotateTriangle();
+                }
+                if (e.getCode() == KeyCode.F5) {
+                    new Lock(emptyCells, sameCells1, sameCells2, scene, pane, sceneBack, stage);
                 }
                 pressed.set(0, true);
             }
