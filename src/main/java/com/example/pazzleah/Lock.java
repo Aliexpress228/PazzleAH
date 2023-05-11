@@ -30,7 +30,7 @@ public class Lock {
     ArrayList<Integer> placesColorIndexes;
     ArrayList<Circle> cirArr;
     ArrayList<Circle> indicatorsArr = new ArrayList<>();
-    ArrayList<Boolean> pressed= new ArrayList<>();
+    ArrayList<Boolean> pressed = new ArrayList<>();
     Circle bigCircle = new Circle();
     Circle smallCircle = new Circle();
     ArrayList<CubicCurve> triangle = new ArrayList<>();
@@ -48,6 +48,7 @@ public class Lock {
     Scene sceneBack;
     Stage stage;
     Pane pane;
+
     Lock(int emptyCells, int sameCells1, int sameCells2, Scene scene, Pane pane, Scene sceneBack, Stage stage) {
         this.pane = pane;
         this.sceneBack = sceneBack;
@@ -58,12 +59,12 @@ public class Lock {
         ArrayList<Integer> a2 = entanglement(new ArrayList<>(a1));
         this.placesColorIndexes = a1;
         this.cellsColorIndexes = a2;
-        this.fillLock( scene,  pane,  sceneBack, stage);
+        this.fillLock(scene, pane, sceneBack, stage);
         setCirclesArray(cirArr, this);
         setActivities(scene, pane, sceneBack, stage);
     }
 
-    private void fillLock(Scene scene, Pane pane, Scene sceneBack, Stage stage){
+    private void fillLock(Scene scene, Pane pane, Scene sceneBack, Stage stage) {
         pane.getChildren().add(left);
         pane.getChildren().add(right);
         pane.getChildren().add(swap);
@@ -191,12 +192,13 @@ public class Lock {
             cirArr.get(i).setStrokeWidth(3);
             cirArr.get(i).setStroke(Color.web("#7A8052", 0.45));
         }
-        triangleRotateDistance = Math.abs(cirArr.get(1).getCenterX()-cirArr.get(3).getCenterX());
+        triangleRotateDistance = Math.abs(cirArr.get(1).getCenterX() - cirArr.get(3).getCenterX());
         getTriangleRotateStartingPoint = cirArr.get(1).getCenterX();
         setCirclesArray(cirArr, this);
         setActivities(scene, pane, sceneBack, stage);
     }
-    private void setActivities(Scene scene, Pane pane, Scene sceneBack, Stage stage){
+
+    private void setActivities(Scene scene, Pane pane, Scene sceneBack, Stage stage) {
         pressed.add(false);
         scene.setOnKeyPressed(e -> {
             //Если не нажато, то выполни действие
@@ -229,11 +231,12 @@ public class Lock {
         });
         back.setOnMouseClicked(mouseEvent -> stage.setScene(sceneBack));
     }
-    private void fillVictory(Pane pane, Scene scene, Stage stage, Scene sceneBack){
+
+    private void fillVictory(Pane pane, Scene scene, Stage stage, Scene sceneBack) {
         Rectangle layer = new Rectangle();
         layer.setWidth(scene.getWidth());
         layer.setHeight(scene.getHeight());
-        layer.setFill(Color.web("#398030",0.4));
+        layer.setFill(Color.web("#398030", 0.4));
         Text victoryText = new Text();
         Button backVictoryButton = new Button("Вернуться к выбору уровней");
         pane.getChildren().add(layer);
@@ -241,25 +244,29 @@ public class Lock {
         pane.getChildren().add(backVictoryButton);
         backVictoryButton.setPrefWidth(400);
         backVictoryButton.setPrefHeight(80);
-        backVictoryButton.setLayoutX(scene.getWidth()/2-backVictoryButton.getPrefWidth()/2);
+        backVictoryButton.setLayoutX(scene.getWidth() / 2 - backVictoryButton.getPrefWidth() / 2);
         backVictoryButton.setLayoutY(150);
         backVictoryButton.setFont(Font.font("Arial", FontWeight.BLACK, 24));
         victoryText.setText("Поздравляем!\nВы прошли уровень!");
         victoryText.setFont(Font.font("Arial", FontWeight.BOLD, 35));
         victoryText.setLayoutY(60);
         victoryText.setWrappingWidth(700);
-        victoryText.setLayoutX(scene.getWidth()/2 - 350);
+        victoryText.setLayoutX(scene.getWidth() / 2 - 350);
         victoryText.setTextAlignment(TextAlignment.CENTER);
-        scene.setOnKeyPressed(e -> {});
-        left.setOnMouseClicked(e -> {});
-        swap.setOnMouseClicked(e -> {});
-        right.setOnMouseClicked(e -> {});
+        scene.setOnKeyPressed(e -> {
+        });
+        left.setOnMouseClicked(e -> {
+        });
+        swap.setOnMouseClicked(e -> {
+        });
+        right.setOnMouseClicked(e -> {
+        });
         backVictoryButton.setOnMouseClicked(e -> stage.setScene(sceneBack));
         ImageView imageView = new ImageView();
         pane.getChildren().add(imageView);
         imageView.setImage(new Image(this.getClass().getResource("dance.gif").toExternalForm()));
         imageView.setFitWidth(550);
-        imageView.setLayoutX(scene.getWidth()/2-imageView.getFitWidth()/2);
+        imageView.setLayoutX(scene.getWidth() / 2 - imageView.getFitWidth() / 2);
         imageView.setLayoutY(270);
     }
 
@@ -282,6 +289,7 @@ public class Lock {
     private static int getOnCirclePosY(double circleY, double l, double angle) {
         return (int) (circleY + l * Math.sin(angle));
     }
+
     private boolean isCompleted() {
         for (int i = 0; i < 8; i++) {
             if (this.getCellsColorIndexes(i) != this.getPlacesColorIndexes(i)) {
@@ -290,6 +298,7 @@ public class Lock {
         }
         return true;
     }
+
     private void setCirclesArray(ArrayList<Circle> cirArr, Lock lock) {
         for (int i = 0; i < 8; i++) {
             cirArr.get(i).setFill(lock.getCellsColor(lock.getCellsColorIndexes(i)));
@@ -300,6 +309,7 @@ public class Lock {
             }
         }
     }
+
     private void setIndicatorsArray(ArrayList<Circle> rectArr, Lock lock) {
         new Thread(() -> {
             for (int j = 0; j <= 22; j++) {
@@ -330,19 +340,19 @@ public class Lock {
         new Thread(() -> {
             for (int j = 0; j <= 40; j++) {
                 try {
-                    Thread.sleep(3 );
+                    Thread.sleep(3);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 int k = j;
                 Platform.runLater(() -> {
                     for (int i = 0; i < 8; i++) {
-                        double formula = a/2.0*k * (Math.PI / 80)+(i-a)*(Math.PI / 4);
-                        cirArr.get(i).setCenterX(getOnCirclePosX(bigCircle.getCenterX(), 185,  formula));
-                        cirArr.get(i).setCenterY(getOnCirclePosY(bigCircle.getCenterY(), 185,  formula));
+                        double formula = a / 2.0 * k * (Math.PI / 80) + (i - a) * (Math.PI / 4);
+                        cirArr.get(i).setCenterX(getOnCirclePosX(bigCircle.getCenterX(), 185, formula));
+                        cirArr.get(i).setCenterY(getOnCirclePosY(bigCircle.getCenterY(), 185, formula));
                     }
                     this.setCirclesArray(this.cirArr, this);
-                    if (k==40 && this.isCompleted()){
+                    if (k == 40 && this.isCompleted()) {
                         fillVictory(pane, scene, stage, sceneBack);
                     }
                 });
@@ -363,21 +373,21 @@ public class Lock {
         new Thread(() -> {
             for (int j = 0; j <= 20; j++) {
                 try {
-                    Thread.sleep(6 );
+                    Thread.sleep(6);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 int k = j;
                 Platform.runLater(() -> {
                     for (int i = 1; i <= 2; i++) {
-                        double formula1 = -k * (Math.PI / 80)+(i+1)*(Math.PI / 4);
-                        cirArr.get(i).setCenterX(getOnCirclePosX(bigCircle.getCenterX(), 185,  formula1));
-                        cirArr.get(i).setCenterY(getOnCirclePosY(bigCircle.getCenterY(), 185,  formula1));
+                        double formula1 = -k * (Math.PI / 80) + (i + 1) * (Math.PI / 4);
+                        cirArr.get(i).setCenterX(getOnCirclePosX(bigCircle.getCenterX(), 185, formula1));
+                        cirArr.get(i).setCenterY(getOnCirclePosY(bigCircle.getCenterY(), 185, formula1));
                     }
-                    cirArr.get(3).setCenterX(getTriangleRotateStartingPoint-k*triangleRotateDistance/20);
+                    cirArr.get(3).setCenterX(getTriangleRotateStartingPoint - k * triangleRotateDistance / 20);
                     this.setCirclesArray(this.cirArr, this);
                     this.setCirclesArray(this.cirArr, this);
-                    if (k==20 && this.isCompleted()){
+                    if (k == 20 && this.isCompleted()) {
                         fillVictory(pane, scene, stage, sceneBack);
                     }
                 });
@@ -385,6 +395,7 @@ public class Lock {
         }).start();
 
     }
+
     private ArrayList<Integer> generateComposition(int emptyCells, int sameCells1, int sameCells2) {
         //Заполняем список нужными комплектами одинаковых и разных
         ArrayList<Integer> palette = new ArrayList<>();
@@ -416,26 +427,40 @@ public class Lock {
         }
         return newCells;
     }
+
     private ArrayList<Integer> entanglement(ArrayList<Integer> newCells) {
         //Перемешивание 100 движенй, (случайное число будет соответствовать элементу списка децствий (С) Колосов (Наш))}
         int k;
-        for(int i=0;i<100;i++){
-            k=rand.nextInt(3);
-            if(k==0){
+        ArrayList<Integer> newCells2 = new ArrayList<>(newCells);
+        for (int i = 0; i < 100; i++) {
+            k = rand.nextInt(3);
+            if (k == 0) {
                 Collections.rotate(newCells, 2);
             }
-            if(k==1){
+            if (k == 1) {
                 Collections.rotate(newCells, -2);
             }
-            if(k==2){
+            if (k == 2) {
                 int a1 = newCells.get(1);
                 int b1 = newCells.get(2);
                 int c1 = newCells.get(3);
                 newCells.set(1, b1);
                 newCells.set(2, c1);
                 newCells.set(3, a1);
+                if (compareLists(newCells2, newCells) && i == 99)
+                    i = i-100;
             }
         }
         return newCells;
+    }
+
+    private boolean compareLists(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        boolean flag = true;
+        for (int i = 0; i < list1.size(); i++) {
+            if (list1.get(i) != list2.get(i)) {
+                return false;
+            }
+        }
+        return flag;
     }
 }
